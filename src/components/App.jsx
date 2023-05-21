@@ -22,14 +22,14 @@ export const App = () => {
 
     PixabayAPI.fetchPhotos(value, page)
       .then(({ hits, total }) => {
-        setItems(prevItems => [...prevItems, ...hits]);
-
-        setShowBtn(page < Math.ceil(total / 12));
-
         if (!hits.length) {
           setIsEmpty(true);
           return;
         }
+
+        setItems(prevItems => [...prevItems, ...hits]);
+
+        setShowBtn(page < Math.ceil(total / 12));
       })
       .catch(error => {
         setError(error.message);
